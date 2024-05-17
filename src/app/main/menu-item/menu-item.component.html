@@ -1,0 +1,121 @@
+<div class="bg-[#000549] p-6 relative w-full h-[100vh] overflow-y-scroll">
+    <img class=" absolute right-0 object-contain "  src="assets/images/only-bg-img.png" alt="">
+    <div class="grid grid-cols-1 justify-center md:mt-20 relative z-[10]">
+        <div class=" w-full md:w-[680px] mx-auto">
+            <div class="flex justify-end">
+                <button [routerLink]="'/profile/' + userId" class="flex gap-2 mb-4 rounded-lg bg-[#F1F8FF] text-sm md:text-base font-semibold p-4 text-[#0065FF] items-center">
+                    <img src="assets/images/profile.png" alt="">
+                    View Profile
+                </button>
+            </div>
+            <div class="flex justify-between items-center w-full border-b-2 p-5 border-b-white">
+                <p [ngClass]="programEvent? 'text-[#FFFFFF]' : 'text-[#FFFFFF66]' " class=" md:text-[20px] text-sm cursor-pointer md:font-bold" (click)="programEvent = true; directionMap = false; showMenu= false">Program of event</p>
+                <p [ngClass]="showMenu?'text-[#FFFFFF]' : 'text-[#FFFFFF66]' " class="md:text-[20px] text-sm cursor-pointer md:font-bold" (click)="programEvent = false; directionMap = false; showMenu= true">Menu</p>
+                <!-- <p [ngClass]="directionMap? 'text-[#FFFFFF]' : 'text-[#FFFFFF66]' " class="md:text-[20px] text-sm cursor-pointer md:font-bold" (click)="programEvent = false; directionMap = true; showMenu= false">Direction/Map</p> -->
+            </div>
+            <div *ngIf="programEvent">
+                <!-- <div class="flex justify-between mt-12 p-2 border-b border-b-white">
+                    <p class="md:text-[20px] text-xs font-bold text-white">Details</p>
+                    <p class="md:text-[20px] text-xs font-bold text-white">Time</p>
+                </div> -->
+                <div class="mt-12">
+                    <h4 class="text-center text-lg text-white font-medium md:font-bold">Coming up soon</h4>
+                </div>
+                <!-- <div class="grid grid-cols-12 gap-3 items-center my-2">
+                    <div class=" col-span-5 md:col-span-3 flex justify-start">
+                        <p class="text-[white] font-medium text-xs md:text-base">Introduction</p>
+                    </div>
+                    <div class="col-span-2 md:col-span-6 border-b  border-dashed border-b-white">
+    
+                    </div>
+                    <div class="col-span-5 md:col-span-3 flex justify-end">
+                        <p class="text-[white] font-medium text-xs md:text-base">5:00 - 5:10PM</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-12 gap-3 items-center my-2">
+                    <div class=" col-span-5 md:col-span-3 flex justify-start">
+                        <p class="text-[white] font-medium text-xs md:text-base">Introduction</p>
+                    </div>
+                    <div class="col-span-2 md:col-span-6 border-b  border-dashed border-b-white">
+    
+                    </div>
+                    <div class="col-span-5 md:col-span-3 flex justify-end">
+                        <p class="text-[white] font-medium text-xs md:text-base">5:00 - 5:10PM</p>
+                    </div>
+                </div> -->
+            </div>
+            <div *ngIf="directionMap">
+                <div class="md:p-12 py-4">
+                    <iframe [src]="safeUrl" class="w-full" frameborder="0"></iframe>
+                </div>
+            </div>
+
+            <!-- Menu Items  -->
+           <section *ngIf="showMenu" class="mt-12">
+                <div>
+                    <h4 class="text-center text-lg text-white font-medium md:font-bold">Coming up soon</h4>
+                </div>
+                <!-- <div>
+                    <div>
+                        <div class="bg-inherit p-3 mt-4 border-b-2 border-[#FFFFFF]">
+                            <p class="text-[#FFFFFF] md:text-[20px] md:leading-[24.2px] text-left  font-bold "> Rice </p>
+                        </div>
+                        <div class="grid grid-cols-1 gap-4 mt-8">
+                            <div class="flex items-center gap-2">
+                                <img src="assets/images/menu-check.png" alt="">
+                                <p class="text-[#FFFFFF] text-base md:text-[20px] md:leading:[30px]">White Rice / with stew</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <img src="assets/images/menu-check.png" alt="">
+                                <p class="text-[#FFFFFF] text-base md:text-[20px] md:leading:[30px]">Jollof Rice</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <img src="assets/images/menu-check.png" alt="">
+                                <p class="text-[#FFFFFF] text-base md:text-[20px] md:leading:[30px]">Fried Rice</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <img src="assets/images/menu-check.png" alt="">
+                                <p class="text-[#FFFFFF] text-base md:text-[20px] md:leading:[30px]">Ofada Rice</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-inherit p-3 mt-4 border-b-2 border-[#FFFFFF]">
+                            <p class="text-[#FFFFFF] md:text-[20px] md:leading-[24.2px] text-left  font-bold "> Traditional </p>
+                        </div>
+                        <div class="grid grid-cols-1 gap-4 mt-8">
+                            <div class="flex items-center gap-2">
+                                <img src="assets/images/menu-check.png" alt="">
+                                <p class="text-[#FFFFFF] text-base md:text-[20px] md:leading:[30px]">Amala with Ewedu</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <img src="assets/images/menu-check.png" alt="">
+                                <p class="text-[#FFFFFF] text-base md:text-[20px] md:leading:[30px]">Amala with Egusi</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <img src="assets/images/menu-check.png" alt="">
+                                <p class="text-[#FFFFFF] text-base md:text-[20px] md:leading:[30px]">Eba with Egusi</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div>
+                        <div class="bg-inherit p-3 mt-4 border-b-2 border-[#FFFFFF]">
+                            <p class="text-[#FFFFFF] md:text-[20px] md:leading-[24.2px] text-left  font-bold "> Appetizers </p>
+                        </div>
+                        <div class="grid grid-cols-1 gap-4 mt-8">
+                            <div class="flex items-center gap-2">
+                                <img src="assets/images/menu-check.png" alt="">
+                                <p class="text-[#FFFFFF] text-base md:text-[20px] md:leading:[30px]">Fruit Salad</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <img src="assets/images/menu-check.png" alt="">
+                                <p class="text-[#FFFFFF] text-base md:text-[20px] md:leading:[30px]">Cupcakes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+           </section>
+        </div>    
+    </div>
+</div>

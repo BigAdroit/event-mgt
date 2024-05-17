@@ -1,0 +1,41 @@
+<div class="bg-[#f7f7f8] h-screen w-full p-12">
+    <div>
+        <h6 class="text-[#000549] text-2xl font-semibold">Welcome back </h6>
+        <p class="text-gray-700">Overview of seat allocation</p>
+    </div>
+    <div class="grid grid-cols-3 gap-8 mt-12">
+        <div class="rounded-md bg-white p-4 border-[#eff2f6]">
+            <h6 class="text-base text-gray-700">Total number of Guest</h6>
+            <p class="text-black text-4xl font-bold mt-6">{{totalNumber}}</p>
+        </div>
+        <div class="rounded-md bg-[#54ed54] p-4 border-[#eff2f6]">
+            <h6 class="text-base text-gray-700"> Total number of assinged guest</h6>
+            <p class="text-black text-4xl font-bold mt-6">{{totalNumberOfAssignedSeat}}</p>
+        </div>
+        <div class="rounded-md bg-[#FFBF00] p-4 border-[#eff2f6]">
+            <h6 class="text-base text-gray-700">Total number of unsassigned guest</h6>
+            <p class="text-black text-4xl font-bold mt-6">{{totalNumber - totalNumberOfAssignedSeat}}</p>
+            <p class="text-[blue] cursor-pointer text-sm " routerLink="/portal/unassigned-guest">View List</p>
+        </div>
+    </div>
+    <div class="grid grid-cols-3 gap-8 mt-12">
+        <div class="rounded-md bg-white p-4 border-[#eff2f6]">
+            <h6 class="text-base text-gray-700">Total number of tables</h6>
+            <p class="text-black text-4xl font-bold mt-6">70</p>
+        </div>
+        <div class="rounded-md bg-[#54ed54] p-4 border-[#eff2f6]">
+            <h6 class="text-base text-gray-700"> Total number of full table assigned</h6>
+            <p class="text-black text-4xl font-bold mt-6">{{completedTableCount}}</p>
+        </div>
+        <div class="rounded-md bg-[#FFBF00] p-4 border-[#eff2f6]">
+            <h6 class="text-base text-gray-700">Total number of in-complete table assigned</h6>
+            <p class="text-black text-4xl font-bold mt-6">{{72 - completedTableCount}}</p>
+        </div>
+    </div>
+    <div class="flex justify-center gap-8 items-center mt-24 ">
+        <button class=" px-6 py-3 rounded-[8px] shadow-lg bg-white" routerLink="/portal/assign-seat">Continue</button>
+        <button class=" px-6 py-3 rounded-[8px] shadow-lg bg-white" routerLink="/portal/table-report">View Report</button>
+        <button class=" px-6 py-3 rounded-[8px] shadow-lg bg-white" routerLink="/portal/table-records">View Table Records</button>
+        <button class=" px-6 py-3 rounded-[8px] shadow-lg bg-white" routerLink="/portal/attendee">Attendees Record</button>
+    </div>
+</div>

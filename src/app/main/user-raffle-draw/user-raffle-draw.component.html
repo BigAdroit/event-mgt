@@ -1,0 +1,99 @@
+<section class="bg-[#000549] p-6 relative w-full h-[100vh] overflow-y-scroll"> 
+    <img class=" absolute right-0 object-contain "  src="assets/images/only-bg-img.png" alt="">
+    <img class=" absolute right-0 bottom-6 object-contain z-[5] hidden md:block"  src="assets/images/flower-right.png" alt="">
+    <img class=" absolute left-0 bottom-6 object-contain hidden z-[5] md:block"  src="assets/images/flower-left.png" alt="">
+
+    <div class="mt-12">
+        <h5 class="text-center text-base font-medium text-white"> Hi {{currentUser.firstName}},</h5>
+        <p class="text-center text-sm text-white">Welcome to Tope Dare Send forth part, kindly select a ticket below to qualify yourself for the raffle draw game</p>
+    </div>
+
+    <div class="mt-8 relative z-[10]" *ngIf="!numberRange.length">
+        <h4 class="text-medium text-lg text-center text-white">Select a number range</h4>
+        <div class="grid grid-cols-2 mt-6 gap-2 md:gap-6 md:grid-cols-4 lg:grid-cols-6">
+            <div (click)="getNumberRange(1, 49)" class="rounded-lg p-6 shadow-lg border-2 cursor-pointer " >
+                <p class="text-center text-white text-xl font-bold">
+                    1 - 49
+                </p>
+            </div>
+
+            <div (click)="getNumberRange(50, 99)" class="rounded-lg p-6 cursor-pointer shadow-lg border-2 " >
+                <p class="text-center text-white text-xl font-bold">
+                    50 - 99
+                </p>
+            </div>
+
+            <div (click)="getNumberRange(100, 149)" class="rounded-lg p-6 shadow-lg border-2 cursor-pointer " >
+                <p class="text-center text-white text-xl font-bold">
+                    100 - 149
+                </p>
+            </div>
+
+            <div (click)="getNumberRange(150, 199)" class="rounded-lg p-6 shadow-lg border-2 cursor-pointer " >
+                <p class="text-center text-white text-xl font-bold">
+                    150 - 199
+                </p>
+            </div>
+
+            <div (click)="getNumberRange(200, 249)" class="rounded-lg p-6 shadow-lg border-2 cursor-pointer " >
+                <p class="text-center text-white text-xl font-bold">
+                    200 - 249
+                </p>
+            </div>
+
+            <div (click)="getNumberRange(250, 299)" class="rounded-lg p-6 shadow-lg border-2 cursor-pointer " >
+                <p class="text-center text-white text-xl font-bold">
+                    250 - 299
+                </p>
+            </div>
+
+            <div (click)="getNumberRange(300, 349)" class="rounded-lg p-6 bg-inherit shadow-lg border-2 " >
+                <p class="text-center text-white text-xl font-bold">
+                    300 - 349
+                </p>
+            </div>
+
+            <div (click)="getNumberRange(350, 399)" class="rounded-lg p-6 shadow-lg border-2 cursor-pointer " >
+                <p class="text-center text-white text-xl font-bold">
+                    350 - 399
+                </p>
+            </div>
+
+            <div (click)="getNumberRange(400, 449)" class="rounded-lg p-6 shadow-lg border-2 cursor-pointer " >
+                <p class="text-center text-white text-xl font-bold">
+                    400 - 449
+                </p>
+            </div>
+
+            <div (click)="getNumberRange(450, 499)" class="rounded-lg p-6 shadow-lg border-2 cursor-pointer " >
+                <p class="text-center text-white text-xl font-bold">
+                    450 - 499
+                </p>
+            </div>
+
+            <div (click)="getNumberRange(500, 549)" class="rounded-lg p-6 shadow-lg border-2 cursor-pointer " >
+                <p class="text-center text-white text-xl font-bold">
+                    500 - 549
+                </p>
+            </div>
+
+            <div (click)="getNumberRange(550, 599)" class="rounded-lg p-6 shadow-lg border-2 cursor-pointer " >
+                <p class="text-center text-white text-xl font-bold">
+                    550 - 599
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-8 relative z-[10]" *ngIf="numberRange.length">
+        <h4 class="text-medium text-lg text-center text-white">Pick your ticket number</h4>
+        <div class="grid grid-cols-2 mt-6 gap-2 md:gap-6 md:grid-cols-4 lg:grid-cols-6">
+            <button [disabled]="isLoading" (click)="selectNumber(num)" *ngFor="let num of numberRange" class="rounded-lg cursor-pointer w-full  bg-[#e3aa5c] p-6 shadow-lg border-2 " >
+                <span class="text-base block font-medium text-[#000549] text-center">Ticket</span>
+                <span class="text-center block text-white text-base font-medium">
+                    {{num}}
+                </span>
+            </button>
+        </div>
+    </div>
+</section>

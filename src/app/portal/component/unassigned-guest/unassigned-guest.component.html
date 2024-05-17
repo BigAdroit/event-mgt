@@ -1,0 +1,112 @@
+<div class="p-8 bg-[#000549] h-full overflow-scroll">
+    <h1 class="text-center text-xl  md:text-2xl mb-8 text-white "> Unassigned Guests </h1>
+    <div class="justify-between flex-col md:flex-row gap-4 md:items-center flex my-4">
+        <div [formGroup]="searchForm" class="relative w-full order-2 md:order-1 md:w-[50%] mt-8">
+            <div class="absolute top-2 inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+            </div>
+            <input formControlName="searchPhrase" type="text" id="table-search" class="block p-2 w-full ps-10 text-sm text-gray-900 border border-gray-300 outline-none focus:outline-none rounded-lg  bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search by name, email, organisation">
+        </div>    
+    </div>
+    <div class="w-full overflow-x-auto bg-white">
+      <table  class="w-full text-sm text-left rtl:text-right text-gray-500 shadow-md sm:rounded-lg">
+         <thead class="text-xs text-gray500 bg-gray50 font-medium bg-white">
+            <tr>
+               <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                  S/N
+               </th>
+               <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                  Name
+               </th>
+               <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                 Email
+              </th>
+               <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                  Phone Number
+               </th>
+               <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                  Place of work
+               </th>
+               <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                Designation
+             </th>
+             <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+               Seat No.
+            </th>
+               <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                  Message
+               </th>
+               <!-- <th scope="col" class="px-6 py-3"></th> -->
+            </tr>
+         </thead>
+         <tbody>
+            <tr class="bg-white border-b" *ngFor="let record of records; index as i">
+   
+               <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                  <div class="flex flex-col">
+                     <p class="text-[#101828] font-medium text-sm">{{i+1}}</p>
+                  </div>
+               </td>
+               <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                  <div class="flex flex-col">
+                     <p class="text-[#101828] font-medium text-sm">{{record.firstName }} {{record.lastName}}</p>
+                  </div>
+               </td>
+               <td class="px-6 py-4">
+                  <div class="flex flex-col">
+                     <p class="text-gray500 font-normal text-sm">{{record.emailAddress}}</p>
+                  </div>
+               </td>
+               <td class="px-6 py-4">
+                  <div class="flex flex-col">
+                     <p class="text-[#101828] font-medium text-sm">{{record.phoneNumber}}</p>
+                  </div>
+               </td>
+               <td class="px-6 py-4">
+                 <div class="flex flex-col">
+                    <p class="text-gray500 font-normal text-sm">{{record.organisation}}</p>
+                 </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex flex-col">
+                   <p class="text-gray500 font-normal text-sm">{{record.designation}}</p>
+                </div>
+             </td>
+             <td class="px-6 py-4">
+               <div class="flex flex-col">
+                  <p class="text-gray500 font-normal flex text-sm" *ngIf="record.seatNo">
+                    <span>T{{record.tableNo }}</span>
+                    <span> S{{record.seatNo}}</span>
+                  </p>
+                  <p class="text-gray500 font-normal flex text-sm" *ngIf="!record.seatNo">
+                     N/A
+                   </p>
+               </div>
+            </td>
+               <td class="px-6 py-4">
+                  <div class="flex flex-col">
+                     <p class="text-gray500 font-normal text-sm">{{record.message}}</p>
+                  </div>
+               </td>
+               <!-- <td class="px-6 py-4">
+                  <a data-tooltip-target="tooltip-default" data-bs-toggle="modal" data-bs-target="#openModal"
+                  class=" text-sm font-medium text-[#0039a6] cursor-pointer">View</a>
+               </td> -->
+            </tr>
+         </tbody>
+      </table>
+      <p class="text-center p-4" *ngIf="!records.length"> No record found</p>
+    </div>
+    
+     <div class="justify-end flex mt-8" *ngIf="records.length">
+        <app-pagination 
+        [totalCount]="totalCount"
+        [itemsPerpage]="itemsPerPage"
+        [pageIndex]="currentPage"
+        (pageClick)="pagination($event)"
+        (lastPageClick)="getLastPage($event)"
+        (firstPageClick)="getFirstPage($event)" 
+        >
+        </app-pagination>
+     </div>
+</div>

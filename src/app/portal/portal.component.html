@@ -1,0 +1,156 @@
+<mat-progress-bar *ngIf="showloader" mode="indeterminate"></mat-progress-bar>
+
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+<div class="layout" >
+  <div class="logo hidden md:block">
+  </div>
+
+  <header class="w-full">
+    
+  </header>
+  <aside  class="" [ngClass]="asideVisible ? 'left-0' : 'left-[-300px]'">
+    <!-- <app-side-bar></app-side-bar> -->
+    <div class="col-span-3 p-4 h-full bg-[#000549]">
+      <p class="text-white text-center">Kindly select a table for seat allocation</p>
+      <div class="grid grid-cols-4 gap-4 my-4">
+          <div [ngStyle]="{ 'background-color': getBackgroundColor(i+ 1) }" class="p-2 rounded-md cursor-pointer" (click)="selectTable(i+1)" *ngFor="let table of totalTableCount; let i = index">
+              <div class="flex justify-center">
+                  <span class="block mx-auto">
+                      <svg height="24px" width="24px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#000000;} </style> <g> <path class="st0" d="M405.369,78.427H106.631L0,171.016v3.764v52.337v1.163v205.293h66.066V228.28h23.402v133.79h57.807V228.28 h217.442v133.79h57.814V228.28h23.395v205.293H512V228.28v-1.163v-56.11L405.369,78.427z M112.792,94.946H399.2l84.808,73.634 H27.984L112.792,94.946z M49.548,417.055H16.519V228.28h33.029V417.055z M130.757,345.55h-24.77V228.28h24.77V345.55z M406.014,345.55h-24.778V228.28h24.778V345.55z M495.482,417.055h-33.037V228.28h33.037V417.055z M495.482,211.762H16.519v-30.79 h478.963V211.762z"></path> </g> </g></svg>
+                  </span>
+              </div>
+              <p class="text-xs font-medium text-center">Table {{i+1}}</p>
+              <!-- <p class="text-[10px]"> <span>Total seat :</span> <span> 0</span></p> -->
+          </div>
+      </div>
+  </div>
+  </aside>
+  <main>
+    <div class="max-w-screen-xl mx-auto ">
+      <div class="col-span-9 h-full p-6">
+         <div *ngIf="selectedTable === ''" class="flex justify-center items-center h-full">
+             <h4 class="text-xl font-medium text-center"> No Table selected</h4>
+         </div>
+ 
+         <div *ngIf="selectedTable !== ''" class="w-full">
+             <h4 class="text-xl "> Table {{selectedTable}} </h4>
+             <p *ngIf="seatPerTable.length < seatMax" class="text-sm">You still have {{seatMax -seatPerTable.length}} slot for this table</p>
+             <p *ngIf="seatPerTable.length >= seatMax" class="text-sm">Number of seat completed</p>
+             <div class="w-[70%] grid gap-4 grid-cols-2 mt-4">
+                 <div class="flex items-center p-2 gap-4 bg-[#f2f4f8] rounded-md" *ngFor="let item of seatPerTable">
+                     <mat-icon>airline_seat_recline_normal</mat-icon>
+                     <p>Seat No : {{item.seatNo}}</p>
+                     <p>{{item.firstName}} {{item.lastName}} </p>
+                 </div>
+             </div>
+             <div [formGroup]="searchForm" class="relative w-full order-2 md:order-1 md:w-[50%] mt-8">
+                 <div class="absolute top-2 inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 flex items-center ps-3 pointer-events-none">
+                     <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                 </div>
+                 <input formControlName="searchPhrase" type="text" id="table-search" class="block p-2 w-full ps-10 text-sm text-gray-900 border border-gray-300 outline-none focus:outline-none rounded-lg  bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search by name, email, organisation">
+             </div>             
+             <div class="w-full overflow-x-auto bg-white ">
+                 <table  class="w-full text-sm text-left rtl:text-right text-gray-500 shadow-md sm:rounded-lg">
+                    <thead class="text-xs text-gray500 bg-gray50 font-medium bg-white">
+                       <tr>
+                          <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                             S/N
+                          </th>
+                          <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                             Name
+                          </th>
+                          <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                            Email
+                         </th>
+                          <!-- <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                             Phone Number
+                          </th> -->
+                          <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                             Place of work
+                          </th>
+                          <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                           Designation
+                        </th>
+                        <th>Seat No.</th>
+                        <th></th>
+                          <!-- <th scope="col" class="px-6 py-3"></th> -->
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr class="bg-white border-b" *ngFor="let record of records; index as i">
+              
+                          <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                             <div class="flex flex-col">
+                                <p class="text-[#101828] font-medium text-sm">{{record.serialNumber}}</p>
+                             </div>
+                          </td>
+                          <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                             <div class="flex flex-col">
+                                <p class="text-[#101828] font-medium text-sm">{{record.firstName }} {{record.lastName}}</p>
+                             </div>
+                          </td>
+                          <td class="px-6 py-4">
+                             <div class="flex flex-col">
+                                <p class="text-gray500 font-normal text-sm">{{record.emailAddress}}</p>
+                             </div>
+                          </td>
+                          <!-- <td class="px-6 py-4">
+                             <div class="flex flex-col">
+                                <p class="text-[#101828] font-medium text-sm">{{record.phoneNumber}}</p>
+                             </div>
+                          </td> -->
+                          <td class="px-6 py-4">
+                            <div class="flex flex-col">
+                               <p class="text-gray500 font-normal text-sm">{{record.organisation}}</p>
+                            </div>
+                         </td>
+                         <td class="px-6 py-4">
+                           <div class="flex flex-col">
+                              <p class="text-gray500 font-normal text-sm">{{record.designation}}</p>
+                           </div>
+                        </td>
+                        <td class="px-6 py-4">
+                           <div class="flex flex-col">
+                              <p class="text-gray500 font-normal flex text-sm" *ngIf="record.seatNo">
+                                <span>T{{record.tableNo }}</span>
+                                <span> S{{record.seatNo}}</span>
+                              </p>
+                              <p class="text-gray500 font-normal flex text-sm" *ngIf="!record.seatNo">
+                                 N/A
+                               </p>
+                           </div>
+                        </td>
+                        <td>
+                         <button *ngIf="seatPerTable.length < seatMax" [disabled]="isAssigned(record) || record.seatNo "  (click)="openAddSeatModal(record)" mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+                             <mat-icon>airline_seat_recline_normal</mat-icon>
+                         </button>
+                        </td>
+                          <!-- <td class="px-6 py-4">
+                             <a data-tooltip-target="tooltip-default" data-bs-toggle="modal" data-bs-target="#openModal"
+                             class=" text-sm font-medium text-[#0039a6] cursor-pointer">View</a>
+                          </td> -->
+                       </tr>
+                    </tbody>
+                 </table>
+                 <p class="text-center p-4" *ngIf="!records.length"> No record found</p>
+               </div>
+               <div class="justify-end flex mt-8 " *ngIf="records.length">
+                 <app-pagination 
+                 [totalCount]="totalCount"
+                 [itemsPerpage]="itemsPerPage"
+                 [pageIndex]="currentPage"
+                 (pageClick)="pagination($event)"
+                 (lastPageClick)="getLastPage($event)"
+                 (firstPageClick)="getFirstPage($event)" 
+                 >
+                 </app-pagination>
+              </div>
+         </div>
+ 
+         
+     </div>
+    </div>
+  </main>
+</div>

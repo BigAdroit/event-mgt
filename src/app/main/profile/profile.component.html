@@ -1,0 +1,92 @@
+<div class="bg-[#000549] p-6 relative w-full h-[100vh] overflow-y-scroll">
+    <img class=" absolute right-0 object-contain "  src="assets/images/only-bg-img.png" alt="">
+    <div class="grid grid-cols-1 justify-center md:mt-16 relative z-[10]">
+        <div class=" w-full md:w-[680px] mx-auto">
+            <div class="flex justify-end gap-2">
+                <button class="flex gap-2  mb-4 rounded-lg bg-[#F1F8FF] text-sm md:text-base font-medium p-4 text-[#0065FF] items-center">
+                    <a href="https://topedare.org/brochure" target="_blank"> Download Brochure</a>
+                </button>
+                <button class="flex gap-2  mb-4 rounded-lg bg-[#F1F8FF] text-sm md:text-base font-medium p-4 text-[#0065FF] items-center">
+                    <a href="https://topedare.org" target="_blank">TOPE DARE </a>
+                </button>
+            </div>
+
+            <div  class="p-4 border-b-2 border-b-[#FFFFFF]">
+                <p class="text-[#FFFFFF] font-bold text-base md:text-[32px] text-center md:text-left md:leading-[38.7px]">Your Profile</p>
+            </div>
+
+            <p *ngIf="isLoading" class="text-white ">Loading...</p>
+
+            <div *ngIf="userProfile" class="mt-12 grid grid-cols-1 gap-6">
+                <div class="">
+                    <p class="text-[#FFFFFF] text-sm md:text-base">First Name</p>
+                    <p class="text-[#FFFFFF] text-base md:text-[24px]">{{userProfile.firstName}}</p>
+                </div>
+                <div class="">
+                    <p class="text-[#FFFFFF]  text-sm md:text-base">Last Name</p>
+                    <p class="text-[#FFFFFF] text-base md:text-[24px]">{{userProfile.lastName}}</p>
+                </div>
+                <!-- <div class="">
+                    <p class="text-[#FFFFFF]  text-sm md:text-base">Email Address</p>
+                    <p class="text-[#FFFFFF] text-base md:text-[24px]">{{userProfile.emailAddress}}</p>
+                </div> -->
+                <!-- <div class="">
+                    <p class="text-[#FFFFFF]  text-sm md:text-base">Phone Number</p>
+                    <p class="text-[#FFFFFF] text-base md:text-[24px]">{{userProfile.phoneNumber}}</p>
+                </div> -->
+                <div class="">
+                    <p class="text-[#FFFFFF]  text-sm md:text-base">Organisation</p>
+                    <p class="text-[#FFFFFF] text-base md:text-[24px]">{{userProfile.organisation}}</p>
+                </div>
+                <div class="">
+                    <p class="text-[#FFFFFF]  text-sm md:text-base">Designation</p>
+                    <p class="text-[#FFFFFF] text-base md:text-[24px]">{{userProfile.designation}}</p>
+                </div>
+                <div class="">
+                    <p class="text-[#FFFFFF]  text-sm md:text-base">Seat Number</p>
+                    <p class="text-[#FFFFFF] text-base md:text-[24px]">{{userProfile.seatNo || 0 }}</p>
+                </div>
+                <div class="">
+                    <p class="text-[#FFFFFF]  text-sm md:text-base">Table Number</p>
+                    <p class="text-[#FFFFFF] text-base md:text-[24px]">{{userProfile.tableNo || 0 }}</p>
+                </div>
+                <!-- <div class="">
+                    <p class="text-[#FFFFFF]  text-sm md:text-base" *ngIf="userProfile.ticketNumber">Ticket Number</p>
+                    <p class="text-[#FFFFFF] text-base md:text-[24px]">{{userProfile.ticketNumber}}</p>
+                </div> -->
+                <div class="">
+                    <p class="text-[#FFFFFF]  text-sm md:text-base">Goodwill Message</p>
+                    <p class="text-[#FFFFFF] text-base md:text-[24px]">{{userProfile.message}}</p>
+                </div>
+            </div>
+            <!-- <div  >
+                <div>
+                    <h1 class="text-[#FFFFFF] text-center text-2xl md:text-[48px] md:leading-[58px] font-bold">404 Error!</h1>
+                    <img src="assets/images/not-found.png" class="mx-auto" alt="">
+                    <p class="text-[white] text-center ">User not found</p>
+                </div> 
+            </div> -->
+            <section *ngIf="!userProfile && !isLoading" class=" flex justify-center items-center p-6 relative w-full">
+                <div>
+                    <h1 class="text-[#FFFFFF] text-center text-2xl md:text-[48px] md:leading-[58px] font-bold">404 Error!</h1>
+                    <img src="assets/images/not-found.png" class="mx-auto" alt="">
+                    <p class="text-[white] text-center ">Oops! User not found</p>
+                </div>
+            </section>
+            <div class="flex gap-4 mt-4 md:mt-12 items-center justify-center">
+                <a href="https://www.facebook.com/profile.php?id=61557606606759&mibextid=ZbWKwL" target="_blank">
+                    <img src="assets/images/facebook.svg" class="w-4! sm:w-auto"  alt="facebook">
+                </a>
+                <a href="https://www.instagram.com/topedare2024?igsh=MXd4dDVsc3NvOHgzaw==" target="_blank">
+                    <img src="assets/images/instagram.svg" class="w-4 sm:w-auto"  alt="instagram">
+                </a>
+                <a href="https://www.linkedin.com/in/tope-dare/" target="_blank">
+                    <img src="assets/images/linkedin.svg" class="w-4 sm:w-auto"  alt="linkedin">
+                </a>
+                <a href="https://x.com/TopeDare1063667?t=LyWwaVi-FqKH8jhYcCH2dA&s=09" target="_blank">
+                    <img src="assets/images/x.svg" class="w-4 sm:w-auto"  alt="x">
+                </a>
+            </div>
+        </div>    
+    </div>
+</div>

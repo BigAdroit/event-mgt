@@ -1,0 +1,116 @@
+<mat-progress-bar *ngIf="showloader" mode="indeterminate"></mat-progress-bar>
+
+<section class="layout">
+    <div class="logo hidden md:block">
+    </div>
+  
+    <header class="w-full">
+      
+    </header>
+    <aside>
+        <div class="grid grid-cols-4 gap-2">
+            <div class="p-2 rounded-md border-2  cursor-pointer" (click)="getTableDetails(table)" *ngFor="let table of tableManualName; let i = index">
+                <div class="flex justify-center">
+                    <span class="block mx-auto">
+                        <svg height="24px" width="24px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#000000;} </style> <g> <path class="st0" d="M405.369,78.427H106.631L0,171.016v3.764v52.337v1.163v205.293h66.066V228.28h23.402v133.79h57.807V228.28 h217.442v133.79h57.814V228.28h23.395v205.293H512V228.28v-1.163v-56.11L405.369,78.427z M112.792,94.946H399.2l84.808,73.634 H27.984L112.792,94.946z M49.548,417.055H16.519V228.28h33.029V417.055z M130.757,345.55h-24.77V228.28h24.77V345.55z M406.014,345.55h-24.778V228.28h24.778V345.55z M495.482,417.055h-33.037V228.28h33.037V417.055z M495.482,211.762H16.519v-30.79 h478.963V211.762z"></path> </g> </g></svg>
+                    </span>
+                </div>
+                <p class="text-xs font-medium text-center">{{table.name}}</p>
+                <!-- <p class="text-xs mt-2"> <span>Total seat :</span> <span>{{getTotalSeatInATable(i+1)}}</span></p> -->
+            </div>
+        </div>
+    </aside>
+    <main>
+        <div *ngIf="records.length == 0">
+            <h4 class="text-2xl font-medium text-center">Please select a table to view Report</h4>
+        </div>
+        <div *ngIf="records.length != 0">
+            <h4 class="text-center font-medium text-2xl mb-2">View {{selectDetails?.name}} Table Report</h4>
+            <div class="flex justify-between my-3">
+               <p class="text-sm">Total Seat {{(selectDetails?.tableList?.length * 8)}}</p>
+               <p class="text-sm">Assigned Seat {{records.length}}</p>
+               <p class="text-sm">Unassigned Seat {{ (selectDetails?.tableList?.length * 8) - records.length}}</p>
+            </div>
+        <div class="w-full overflow-x-auto bg-white ">
+            <table  class="w-full text-sm text-left rtl:text-right text-gray-500 shadow-md sm:rounded-lg">
+               <thead class="text-xs text-gray500 bg-gray50 font-medium bg-white">
+                  <tr>
+                     <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                        S/N
+                     </th>
+                     <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                        Name
+                     </th>
+                     <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                       Email
+                    </th>
+                     <!-- <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                        Phone Number
+                     </th> -->
+                     <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                        Place of work
+                     </th>
+                     <th scope="col" class="px-6 py-3 text-xs font-inter text-gray500">
+                      Designation
+                   </th>
+                   <th>Seat No.</th>
+                     <!-- <th scope="col" class="px-6 py-3"></th> -->
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="bg-white border-b" *ngFor="let record of records; index as i">
+         
+                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        <div class="flex flex-col">
+                           <p class="text-[#101828] font-medium text-sm">{{record.serialNumber}}</p>
+                        </div>
+                     </td>
+                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        <div class="flex flex-col">
+                           <p class="text-[#101828] font-medium text-sm">{{record.firstName }} {{record.lastName}}</p>
+                        </div>
+                     </td>
+                     <td class="px-6 py-4">
+                        <div class="flex flex-col">
+                           <p class="text-gray500 font-normal text-sm">{{record.emailAddress}}</p>
+                        </div>
+                     </td>
+                     <!-- <td class="px-6 py-4">
+                        <div class="flex flex-col">
+                           <p class="text-[#101828] font-medium text-sm">{{record.phoneNumber}}</p>
+                        </div>
+                     </td> -->
+                     <td class="px-6 py-4">
+                       <div class="flex flex-col">
+                          <p class="text-gray500 font-normal text-sm">{{record.organisation}}</p>
+                       </div>
+                    </td>
+                    <td class="px-6 py-4">
+                      <div class="flex flex-col">
+                         <p class="text-gray500 font-normal text-sm">{{record.designation}}</p>
+                      </div>
+                   </td>
+                   <td class="px-6 py-4">
+                      <div class="flex flex-col">
+                         <p class="text-gray500 font-normal flex text-sm" *ngIf="record.seatNo">
+                           <span>T{{record.tableNo }}</span>
+                           <span> S{{record.seatNo}}</span>
+                         </p>
+                         <p class="text-gray500 font-normal flex text-sm" *ngIf="!record.seatNo">
+                            N/A
+                          </p>
+                      </div>
+                   </td>
+                   
+                     <!-- <td class="px-6 py-4">
+                        <a data-tooltip-target="tooltip-default" data-bs-toggle="modal" data-bs-target="#openModal"
+                        class=" text-sm font-medium text-[#0039a6] cursor-pointer">View</a>
+                     </td> -->
+                  </tr>
+               </tbody>
+            </table>
+            <p class="text-center p-4" *ngIf="!records.length"> Table {{selectedTable}} is empty</p>
+          </div>
+        </div>
+    </main>
+</section>

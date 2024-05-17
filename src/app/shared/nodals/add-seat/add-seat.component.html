@@ -1,0 +1,39 @@
+<section class="p-4 w-[500px]">
+    <h4 class="text-2xl font-medium">Assign Seat</h4>
+    <p>Kindly assign a seat to {{data.val.firstName}} {{data.val.lastName}} under table {{data.table}}</p>
+    <div class="grid gap-4 grid-cols-2 my-8">
+        <div class="bg-[#f2f4f8] p-2 rounded-md">
+            <p class="text-xs">First Name </p>
+            <p class="text-base"> {{data.val.firstName}} </p>
+        </div>
+        <div class="bg-[#f2f4f8] p-2 rounded-md">
+            <p class="text-xs">Last Name </p>
+            <p class="text-base"> {{data.val.lastName}} </p>
+        </div>
+        <div class="bg-[#f2f4f8] p-2 rounded-md">
+            <p class="text-xs">Organisation </p>
+            <p class="text-base"> {{data.val.organisation}} </p>
+        </div>
+        <div class="bg-[#f2f4f8] p-2 rounded-md">
+            <p class="text-xs">Phone Number </p>
+            <p class="text-base"> {{data.val.phoneNumber}}</p>
+        </div>
+    </div>
+    <div class="w-full">
+        <mat-form-field>
+            <mat-label>Select Seat</mat-label>
+            <mat-select [(value)]="seatNo" name="seat number">
+                <mat-option  *ngFor="let seat of seats" [value]="seat" [disabled]="isSeatBooked(seat)">{{seat}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="mt-12 flex justify-end items-center gap-8">
+        <button (click)="close()" class="border-none rounded-lg outline-none py-3 px-8 text-black bg-[white]">
+            Cancle
+        </button>
+        <button [disabled]="seatNo == ''" (click)="updateSeatNumber()" class="border-none rounded-lg outline-none py-3 px-8 text-white bg-[#000549]">
+            Assign Seat
+        </button>
+    </div>
+</section>

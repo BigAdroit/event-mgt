@@ -1,0 +1,13 @@
+<div class="bg-[#D9D9D9] rounded-lg cursor-pointer overflow-x-auto">
+    <ul class="p-2  flex items-center  gap-2 md:gap-4">
+        <li 
+        (click)="getFirstPage()" 
+         class="flex items-center text-sm  md:text-base gap-4 hover:bg-[#000549] hover:rounded-lg p-2 hover:text-white" ><img src="assets/images/previous.svg" alt=""> <span>First page</span></li>
+        <li (click)="pageIndex = pageNum;  paginationClick(pageNum)"
+        [ngClass]="pageIndex === pageNum ? 'bg-[#000549]' : 'bg-inherit'"
+         class="hover:bg-[#000549] text-sm  md:text-base text-white rounded-lg p-2 hover:text-white"
+          *ngFor="let pageNum of visiblePages">{{pageNum}}</li>
+        <li (click)="getLastPage()" class="flex text-sm  md:text-base items-center gap-4 hover:bg-[#000549] hover:rounded-lg p-2 hover:text-white"
+        > <span>Last page</span><img src="assets/images/next.svg" alt=""> </li>
+    </ul>
+</div>

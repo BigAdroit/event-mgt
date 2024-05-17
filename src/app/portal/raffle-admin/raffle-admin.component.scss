@@ -1,0 +1,50 @@
+.image-container {
+    position: relative;
+    width: 300px; /* Adjust as needed */
+    height: 400px; /* Adjust as needed */
+    overflow: hidden;
+  }
+  
+  .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    animation: fadeImages 9s infinite; /* Adjust animation duration as needed */
+  }
+  
+  @keyframes fadeImages {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .image:nth-child(1) {
+    animation-delay: 0s; /* Delay for first image */
+  }
+  
+  .image:nth-child(2) {
+    animation-delay: 3s; /* Delay for second image */
+  }
+  
+  .image:nth-child(3) {
+    animation-delay: 6s; /* Delay for third image */
+  }
+
+  .image:nth-child(3) {
+    animation-delay: 9s; /* Delay for third image */
+  }
+  
