@@ -13,8 +13,6 @@ export class FirebaseServiceService {
     private http : HttpClient
     ) {}
 
-    private sendGridApiUrl = 'https://smtp.sendgrid.net';
-  private sendGridApiKey = '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';
 
   writeToCollection(data: any, collectionName: string): Promise<any> {
     return this.firestore.collection(collectionName).add(data);
